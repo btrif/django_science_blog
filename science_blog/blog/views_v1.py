@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
-from .forms import PostForm
 
 
 
@@ -24,6 +23,5 @@ class ArticleDetailView(DetailView):
 class AddPostView(CreateView):
     model = Post
     template_name = 'add_post.html'
-    form_class = PostForm
-    # fields = '__all__'
+    fields = '__all__'
     # fields = ('title', 'body', 'tags')
