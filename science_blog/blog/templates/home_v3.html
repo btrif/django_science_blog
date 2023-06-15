@@ -8,11 +8,8 @@
 {% for post in object_list %}
 
     <li><a href="{% url 'article-detail' post.pk %}">{{  post.title }}</a>
-        -  {{  post.created_time }} -
-        {{  post.author.first_name  }}     {{  post.author.last_name  }} -
-        <small>
-        <a href="{% url 'update-post' post.pk %}">Edit</a>
-        </small>
+        -  {{  post.created }} -
+        {{  post.author.first_name  }}     {{  post.author.last_name  }}
     <br><br>
     {{  post.body }} </li>
     <br><br>
