@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Posts Summary</title>
-</head>
-<body>
-
 {% extends 'base.html' %}
 
 {% block content %}
@@ -17,8 +9,7 @@
 
     <li><a href="{% url 'article-detail' post.pk %}">{{  post.title }}</a>
         -  {{  post.created }} -
-        {{  post.author.first_name  }}
-        {{  post.author.last_name  }}
+        {{  post.author.first_name  }}     {{  post.author.last_name  }}
     <br><br>
     {{  post.body }} </li>
     <br><br>
@@ -26,7 +17,3 @@
 </ul>
 
 {% endblock %}
-
-
-</body>
-</html>

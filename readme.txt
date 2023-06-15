@@ -95,3 +95,9 @@ Running migrations:
   Applying blog.0001_initial... OK
 
 
+### Django Page Creation
+
+- Whenever we create a new page file we need a 3 step process :
+1. a html template File,
+2. A view
+3. an URL
