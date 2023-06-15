@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article Details</title>
+
+</head>
+<body>
+
+
+
+<h1> {{ post.title }}</h1>
+
+<small> By: {{ post.author.first_name}}
+            {{ post.author.last_name}}<br>
+</small>
+<hr>
+<br>
+{{ post.body }}
+
+
+
+<br><br>
+
+<a href="{% url 'home-sweet-home' %}">Back</a>
+
+</body>
+</html>

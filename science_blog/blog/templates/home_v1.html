@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hellow World</title>
+</head>
+<body>
+
+
+<h1>  Hello World !   </h1>
+
+
+{% for post in object_list %}
+
+    <li>{{  post.title }}
+        -  {{  post.created }} -   {{  post.author.first_name  }}
+    {{  post.author.last_name  }}
+    </li> </br>
+    {{  post.body }} </li>
+
+
+{% endfor %}
+
+
+</body>
+</html>
