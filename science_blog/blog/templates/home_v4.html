@@ -11,8 +11,7 @@
         -  {{  post.created_time }} -
         {{  post.author.first_name  }}     {{  post.author.last_name  }} -
         <small>
-        <a href="{% url 'update-post' post.pk %}">Edit</a> |
-        <a href="{% url 'delete-post' post.pk %}">Delete</a>
+        <a href="{% url 'update-post' post.pk %}">Edit</a>
         </small>
     <br><br>
     {{  post.body }} </li>
