@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -8,8 +8,8 @@ from django.urls import reverse
 class Post(models.Model):
     title = models.CharField(max_length=255)
     title_tag = models.CharField(max_length=255, default="awesome title")
-    created_time = models.DateTimeField(datetime.datetime.now(), default=datetime.datetime.now())
-    modified_time = models.DateTimeField(datetime.datetime.now(), default=datetime.datetime.now())
+    date_created = models.DateTimeField(datetime.now(), default=datetime.now())
+    date_updated = models.DateTimeField(datetime.now(), default=datetime.now())
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     tags = models.CharField(max_length=255, default="")

@@ -13,7 +13,7 @@ def home(request):
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
-    ordering = ['-created_time']        # ['-id']
+    ordering = ['-date_created']        # ['-id']
 
 
 class ArticleDetailView(DetailView):
@@ -33,7 +33,7 @@ class UpdatePostView(UpdateView):
     model = Post
     template_name = 'update_post.html'
     form_class = PostForm
-    # fields = ['title', 'body', 'tags', 'title_tag', 'modified_time']
+    # fields = ['title', 'body', 'tags', 'title_tag', 'date_updated']
 
 
 class DeletePostView(DeleteView):
