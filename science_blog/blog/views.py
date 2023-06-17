@@ -40,3 +40,7 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home-sweet-home')
+
+
+def custom_date_picker(request):
+    return render(request, 'custom_date_picker.html', {})

@@ -5,8 +5,6 @@ from django import forms
 from .models import Post
 
 
-
-
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -17,7 +15,18 @@ class PostForm(forms.ModelForm):
             'title_tag' : forms.TextInput(attrs={'class' : 'form-control'}),
             'tags' : forms.TextInput(attrs={'class' : 'form-control'}),
             'author' : forms.Select(attrs={'class' : 'form-control'}),
-            'date_updated': forms.DateTimeInput({'class': 'form-control'}),
+            # 'date_updated': forms.DateTimeInput(format='%Y.%m.%d, %H:%M', attrs={'type': 'datetime'}),
+            'date_updated': forms.DateInput(attrs={'class':'datepicker', 'value': datetime.datetime.now().strftime("%d-%m-%Y")}),
             'body' : forms.Textarea(attrs={'class' : 'form-control'}),
 
             }
+
+
+class DateForm(forms.Form):
+    date = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': '#datetimepicker1'
+        })
+    )
