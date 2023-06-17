@@ -1,11 +1,24 @@
 #  Created by btrif Trif on 15-06-2023 , 4:28 PM.
-import datetime
-
+from datetime import datetime
+from django.utils import timezone
 from django import forms
 from .models import Post
 
 
 class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'author', 'tags', 'body')
+
+        widgets = {
+            'title' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'This is title Placeholder'}),
+            'tags' : forms.TextInput(attrs={'class' : 'form-control'}),
+            'author' : forms.Select(attrs={'class' : 'form-control'}),
+            'body' : forms.Textarea(attrs={'class' : 'form-control'}),
+            }
+
+
+class UpdateForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'author', 'tags', 'body', 'date_updated')
@@ -14,12 +27,13 @@ class PostForm(forms.ModelForm):
             'title' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'This is title Placeholder'}),
             'title_tag' : forms.TextInput(attrs={'class' : 'form-control'}),
             'tags' : forms.TextInput(attrs={'class' : 'form-control'}),
-            'author' : forms.Select(attrs={'class' : 'form-control'}),
-            # 'date_updated': forms.DateTimeInput(format='%Y.%m.%d, %H:%M', attrs={'type': 'datetime'}),
-            'date_updated': forms.DateInput(attrs={'class':'datepicker', 'value': datetime.datetime.now().strftime("%d-%m-%Y")}),
+            'date_updated': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'body' : forms.Textarea(attrs={'class' : 'form-control'}),
 
             }
+
+
+
 
 
 class DateForm(forms.Form):

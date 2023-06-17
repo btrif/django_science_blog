@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from blog.models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .forms import PostForm
+from .forms import PostForm, UpdateForm
 from django.urls import reverse_lazy
 
 
@@ -32,7 +32,7 @@ class AddPostView(CreateView):
 class UpdatePostView(UpdateView):
     model = Post
     template_name = 'update_post.html'
-    form_class = PostForm
+    form_class = UpdateForm
     # fields = ['title', 'body', 'tags', 'title_tag', 'date_updated']
 
 

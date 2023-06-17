@@ -13,8 +13,8 @@ class Post(models.Model):
     # date_created = models.DateTimeField(verbose_name=("Creation date"), auto_now_add=True, null=False, default=datetime.now)
     # date_updated = models.DateTimeField()
 
-    date_created = models.DateTimeField(auto_now_add=True)
-    date_updated = models.DateTimeField(default=datetime.now)
+    date_created = models.DateTimeField(default=timezone.now)
+    date_updated = models.DateTimeField(default=timezone.now)
 
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)

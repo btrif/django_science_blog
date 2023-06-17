@@ -7,9 +7,23 @@
 <h1>  Update Post ...  </h1>
 <br><br>
 
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-secondary">Update</button>
+
+
+</form>
+</div>
+
+{% endblock %}
+
+
+
 <div class="form-group">
 
-    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
   {{ form.date }}
   <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -23,15 +37,3 @@
     });
   });
 </script>
-
-
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-secondary">Update</button>
-
-
-</form>
-</div>
-
-{% endblock %}
