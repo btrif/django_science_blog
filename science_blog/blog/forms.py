@@ -26,8 +26,9 @@ class UpdateForm(forms.ModelForm):
         widgets = {
             'title' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'This is title Placeholder'}),
             'title_tag' : forms.TextInput(attrs={'class' : 'form-control'}),
+            'author': forms.Select(attrs={'class': 'form-control'}),
             'tags' : forms.TextInput(attrs={'class' : 'form-control'}),
-            'date_updated': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'date_updated': forms.DateTimeInput(attrs={'type': 'datetime-local', 'placeholder' : timezone.now().strftime('%Y') }),
             'body' : forms.Textarea(attrs={'class' : 'form-control'}),
 
             }
