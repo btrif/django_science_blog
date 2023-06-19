@@ -1,9 +1,19 @@
 .LOG
 
+### Start new project
+
+```
 (django_sci_venv) D:\workspace\btrif\django_science_blog>django-admin startproject science_blog
 
- (django_sci_venv) D:\workspace\btrif\django_science_blog>cd science_blog
+```
 
+```
+ (django_sci_venv) D:\workspace\btrif\django_science_blog>cd science_blog
+```
+
+### Migrate
+
+```
 (django_sci_venv) D:\workspace\btrif\django_science_blog\science_blog>python manage.py migrate
 Operations to perform:
   Apply all migrations: admin, auth, contenttypes, sessions
@@ -26,7 +36,10 @@ Running migrations:
   Applying auth.0011_update_proxy_permissions... OK
   Applying auth.0012_alter_user_first_name_max_length... OK
   Applying sessions.0001_initial... OK
+```
 
+### Start Django server
+```
 (django_sci_venv) D:\workspace\btrif\django_science_blog\science_blog>python manage.py runserver
 Watching for file changes with StatReloader
 Performing system checks...
@@ -36,8 +49,10 @@ June 10, 2023 - 20:51:03
 Django version 4.2.2, using settings 'science_blog.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CTRL-BREAK.
+```
 
-
+### Create super user (admin)
+```
 (django_sci_venv) D:\workspace\btrif\django_science_blog\science_blog>python manage.py createsuperuser
 Username (leave blank to use 'btrif'): admin
 Email address: admin@admin.admin
@@ -48,15 +63,17 @@ This password is too short. It must contain at least 8 characters.
 This password is too common.
 Bypass password validation and create user anyway? [y/N]: y
 Superuser created successfully.
+```
 
+```
 (django_sci_venv) D:\workspace\btrif\django_science_blog\science_blog>python manage.py runserver
 Watching for file changes with StatReloader
 Performing system checks...
 
+```
 
 
-
-
+```
 System check identified no issues (0 silenced).
 June 10, 2023 - 20:55:34
 Django version 4.2.2, using settings 'science_blog.settings'
@@ -75,29 +92,95 @@ Starting development server at http://127.0.0.1:8000/
 [10/Jun/2023 20:55:50] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
 [10/Jun/2023 20:55:50] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
 [10/Jun/2023 20:55:50] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+```
 
-
+### Start the blog app
+```
 (django_sci_venv) D:\workspace\btrif\django_science_blog\science_blog>python manage.py startapp blog
 
+```
 
-######## After the Post in models
+- Everytime we create a new app we will add the app to the settings.py -> INSTALLED_APPS
+- Add to the science_blog/urls.py -> these are the main URLS:
+```
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('blog.urls')),   
+]
+```
+
+### Write the Model
+
+- and after the Post mode in models.py was written
 
 
+#### makemigrations - generating the script to modify the DB
+
+This will generate a file in the migrations folder
+
+```
 (.science_blog_venv) D:\workspace\btrif\django_science_blog\science_blog>python manage.py makemigrations
 Migrations for 'blog':
   blog\migrations\0001_initial.py
     - Create model Post
+```
 
+#### Migrate again
+
+This will execute the previously generate file
+
+```
 (.science_blog_venv) D:\workspace\btrif\django_science_blog\science_blog>python manage.py migrate
 Operations to perform:
   Apply all migrations: admin, auth, blog, contenttypes, sessions
 Running migrations:
   Applying blog.0001_initial... OK
+```
+
+#### - Create Template HTML File
+#### - Create Views
+#### - Create URL
 
 
 ### Django Page Creation
 
 - Whenever we create a new page file we need a 3 step process :
-1. a html template File,
-2. A view
-3. an URL
+1.  a html template File,
+2.    A view
+3.  an URL
+
+----------------------------------
+
+18.JUN.2023 - 11:34AM
+
+### User Authentication
+
+##### Creating a User authentication for blog - Using a different app
+
+- In Django Everything is an app : the blog website is an app
+- We will create a separate app for User Authentication System
+
+```
+(.science_blog_venv) D:\workspace\btrif\django_science_blog\science_blog>python manage.py startapp members
+```
+
+- a new folder ( app) called members was created :
+- initially it will contain the same files : migrations folder, admin.py, apps.py, mode.py, tests.py, views.py 
+- we will add in this folder  a new file urls.py 
+- Everytime we create a new app we will add the app to the settings.py -> INSTALLED_APPS
+- Also in science_blog/urls.py we must include members.urls : 
+```
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('blog.urls')),
+    path('members/', include('django.contrib.auth.urls')),
+    path('members/', include('members.urls')),
+]
+```
+
+- Why two members urls ?
+  - the order is important: Django will use the builtin contrib.auth.urls to handle User Authentication
+  - the second url is for other types of pages
+
+- Create members/templates/registration folders
+- Start creating templates

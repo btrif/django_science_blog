@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html', {})
+    return render(request, 'home_v1.html', {})
 
 
 class HomeView(ListView):
@@ -42,5 +42,8 @@ class DeletePostView(DeleteView):
     success_url = reverse_lazy('home-sweet-home')
 
 
-def custom_date_picker(request):
-    return render(request, 'custom_date_picker.html', {})
+def custom_datetime_picker(request):
+    return render(request, 'custom_datetime_picker.html', {})
+
+
+
