@@ -2,22 +2,31 @@
 
 {% block content %}
 
-<h1>  Posts  </h1>
+<h1> Posts </h1>
 
 <ul>
-{% for post in object_list %}
+    {% for post in object_list %}
 
-    <li><a href="{% url 'article-detail' post.pk %}">{{  post.title }}</a>
-        -  {{  post.date_created }} -
-        {{  post.author.first_name  }}     {{  post.author.last_name  }} -
+    <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+        - {{ post.date_created }} -
+        {{ post.author.first_name }} {{ post.author.last_name }}
+
         <small>
-        <a href="{% url 'update-post' post.pk %}">Edit</a> |
-        <a href="{% url 'delete-post' post.pk %}">Delete</a>
+            {% if user.is_authenticated %}
+            - <a href="{% url 'update-post' post.pk %}">Edit</a> |
+            <a href="{% url 'delete-post' post.pk %}">Delete</a>
+            {% endif %}
         </small>
-    <br><br>
-    {{  post.body }} </li>
-    <br><br>
-{% endfor %}
+
+        <br>
+<!--        {{ post.body|slice:":200" }}-->
+        {{ post.body|truncatewords:40 }}
+    </li>
+
+    <br>
+
+    {% endfor %}
+
 </ul>
 
 {% endblock %}

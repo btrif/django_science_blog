@@ -184,3 +184,56 @@ urlpatterns = [
 
 - Create members/templates/registration folders
 - Start creating templates
+
+
+
+### User Authentication
+
+- Django Framework handles also Login and Logout.
+- in settings.py must add a redirect URL :
+ ```python
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+```
+ 
+- For the register we must add an url in members :
+```
+path('register/', UserRegisterView.as_view(), name='register'),
+```
+
+- And in views.py must add :
+```
+class UserRegisterView(generic.CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('login')
+```
+
+- Django has a function : is_authenticated which help with showing/ not showing
+private posts of a specific user.
+- first must edit the jinja template from base.html
+```
+{% if user.is_authenticated %}
+{% else %}
+{% endif %}
+```
+- next add same functionality to home.html;
+- Finally, and most important protect the update_post.html, add_post.html, delete_post.html
+to not allow anonymous update or edit. This is done also by adding:
+```
+{% if user.is_authenticated %}
+{% else %}
+{% endif %}
+```
+
+## Django Homepage Tip
+How to display on homepage only snippet of the entire blog post
+Go in home.html :
+```
+{{ post.body|slice:":200" }}
+{{ post.body|truncatewords:40 }}
+```
+
+
+
+
