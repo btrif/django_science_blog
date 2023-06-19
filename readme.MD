@@ -247,3 +247,13 @@ Go in home.html :
 ```
 - then add <p> tags within article
 
+
+
+## Categories
+- To add categories we must create a new model
+- we must modify the form :
+```
+categories = Category.objects.all().values_list('name', 'name')
+
+'category' : forms.Select(choices=categories),
+```

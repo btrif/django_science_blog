@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from blog.models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .forms import PostForm, UpdateForm, Category
+from .forms import PostForm, UpdateForm
 from django.urls import reverse_lazy
 
 
@@ -41,11 +41,6 @@ class DeletePostView(DeleteView):
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home-sweet-home')
 
-
-class AddCategoryView(CreateView):
-    model = Category
-    template_name = 'add_category.html'
-    fields = '__all__'
 
 def custom_datetime_picker(request):
     return render(request, 'custom_datetime_picker.html', {})

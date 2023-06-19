@@ -1,7 +1,7 @@
 #  Created by btrif Trif on 10-06-2023 , 9:41 PM.
 from django.urls import path
 from . import views
-from .views import HomeView, ArticleDetailView, AddPostView, UpdatePostView, DeletePostView
+from .views import HomeView, ArticleDetailView, AddPostView, UpdatePostView, DeletePostView, AddCategoryView
 
 
 
@@ -15,6 +15,7 @@ urlpatterns = [
     path('article/edit/<int:pk>', UpdatePostView.as_view(), name="update-post"),
     path('article/delete/<int:pk>', DeletePostView.as_view(), name="delete-post"),
     path('custom_datetime_picker/', views.custom_datetime_picker, name="custom_datetime_picker"),
+    path('add_category/', AddCategoryView.as_view(), name="add-category"),
 
 ]
 
