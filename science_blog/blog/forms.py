@@ -32,16 +32,3 @@ class UpdateForm(forms.ModelForm):
             'body' : forms.Textarea(attrs={'class' : 'form-control'}),
 
             }
-
-
-
-
-
-class DateForm(forms.Form):
-    date = forms.DateTimeField(
-        input_formats=['%d/%m/%Y %H:%M'],
-        widget=forms.DateTimeInput(attrs={
-            'class': 'form-control datetimepicker-input',
-            'data-target': '#datetimepicker1'
-        })
-    )
