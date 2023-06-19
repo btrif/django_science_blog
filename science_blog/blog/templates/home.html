@@ -20,7 +20,7 @@
 
         <br>
 <!--        {{ post.body|slice:":200" }}-->
-        {{ post.body|truncatewords:40 }}
+        {{ post.body|truncatewords:40|safe }}
     </li>
 
     <br>

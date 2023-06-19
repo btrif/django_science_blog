@@ -187,7 +187,7 @@ urlpatterns = [
 
 
 
-### User Authentication
+### Login & Logout - User Authentication
 
 - Django Framework handles also Login and Logout.
 - in settings.py must add a redirect URL :
@@ -226,8 +226,11 @@ to not allow anonymous update or edit. This is done also by adding:
 {% endif %}
 ```
 
-## Django Homepage Tip
-How to display on homepage only snippet of the entire blog post
+## Django Tips
+
+#### Django Homepage post preview
+
+How to display on homepage only snippet (short preview) of the entire blog post
 Go in home.html :
 ```
 {{ post.body|slice:":200" }}
@@ -235,5 +238,12 @@ Go in home.html :
 ```
 
 
+#### Fix spacing in the Article Detail View
 
+- By default Django escape out html formatting, because of security (injections)
+- To set us, article_detail.html & home.html :
+```
+{{ post.body|safe }}
+```
+- then add <p> tags within article
 
