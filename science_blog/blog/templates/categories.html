@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if category_posts %}
+
+    <h1> {{ categories}} Category </h1>
+
+     <ul>
+    {% for post in category_posts %}
+
+       <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+            - {{ post.date_created }} -
+
+            {{ post.author.first_name }}
+            {{ post.author.last_name }}
+
+            <small>
+                {% if user.is_authenticated %}
+                - <a href="{% url 'update-post' post.pk %}">Edit</a> |
+                <a href="{% url 'delete-post' post.pk %}">Delete</a>
+                {% endif %}
+            </small>
+
+            <br>
+    <!--        {{ post.body|slice:":200" }}-->
+            {{ post.body|truncatewords:40|safe }}
+        </li>
+
+        <br>
+
+        {% endfor %}
+
+     </ul>
+
+
+{% else %}
+<h2> Sorry , this category does not exist. </h2>
+{% endif%}
+
+
+
+    {% endblock %}
