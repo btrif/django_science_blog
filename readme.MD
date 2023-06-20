@@ -247,6 +247,14 @@ Go in home.html :
 ```
 - then add <p> tags within article
 
+#### Slugify categories
+- Means that when you have a space ( e.g. coding tutorials) we must add :
+```
+in home.html
+<a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>  -
+in views.py :
+category_posts = Post.objects.filter(category=categories.replace('-', ' '))
+```
 
 
 ## Categories
