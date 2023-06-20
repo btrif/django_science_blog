@@ -265,3 +265,21 @@ categories = Category.objects.all().values_list('name', 'name')
 
 'category' : forms.Select(choices=categories),
 ```
+
+### Category Nav-Bar  Menu
+1. Add from bootstrap the nav-bar
+2. in views.py add to class HomeView :
+```python
+    def get_context_data(self, *args, object_list=None, **kwargs):
+        categ_menu = Category.objects.all()
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context["categ_menu"] = categ_menu
+        return context
+```
+3. in navbar :
+```
+{% for categ in categ_menu%}
+<li><a class="dropdown-item" href="{% url 'category' categ|slugify %}">{{ categ }}</a></li>
+{% endfor %}
+```
+

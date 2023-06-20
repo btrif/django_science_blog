@@ -13,14 +13,7 @@ def home(request):
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
-    ordering = ['-date_created']  # ['-id']
-
-
-    def get_context_data(self, *args, object_list=None, **kwargs):
-        categ_menu = Category.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context["categ_menu"] = categ_menu
-        return context
+    ordering = ['-date_created']        # ['-id']
 
 
 class ArticleDetailView(DetailView):
@@ -54,21 +47,12 @@ class AddCategoryView(CreateView):
     template_name = 'add_category.html'
     fields = '__all__'
 
-
 def CategoryView(request, categories):
     category_posts = Post.objects.filter(category=categories.replace('-', ' '))
-    return render(
-            request, 'categories.html',
-            {'categories': categories.title().replace('-', ' '), 'category_posts': category_posts}
-            )
-
-
-def CategoryListView(request):
-    categ_menu_list = Category.objects.all()
-    return render(
-        request, 'category_list.html', {'categ_menu_list': categ_menu_list}
-        )
-
+    return render(request, 'categories.html', {'categories': categories.title().replace('-', ' '), 'category_posts': category_posts})
 
 def custom_datetime_picker(request):
     return render(request, 'custom_datetime_picker.html', {})
+
+
+

@@ -9,7 +9,7 @@
 
     <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
         - {{ post.date_created }} -
-        <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>  -
+        <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a> -
 
         {{ post.author.first_name }}
         {{ post.author.last_name }}
@@ -20,16 +20,18 @@
             <a href="{% url 'delete-post' post.pk %}">Delete</a>
             {% endif %}
         </small>
-
         <br>
-<!--        {{ post.body|slice:":200" }}-->
+        <!--        {{ post.body|slice:":200" }}-->
         {{ post.body|truncatewords:40|safe }}
     </li>
-
     <br>
 
     {% endfor %}
 
 </ul>
+
+{% for categ in categ_menu%}
+{{ categ  }} <br>
+{% endfor %}
 
 {% endblock %}
